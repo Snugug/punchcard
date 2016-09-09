@@ -21,6 +21,7 @@ module.exports = {
       revisions: 'revisions',
       save: 'save',
       new: 'Save Revision',
+      schedule: 'schedule',
     },
     plugins: {
       directory: [path.join(__dirname, '../input-plugins')],

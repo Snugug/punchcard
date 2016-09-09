@@ -1,0 +1,40 @@
+{% extends "_donut.html" %}
+
+{% block pageHead %}
+  {{ super() }}
+{% endblock %}
+
+
+{% block header %}
+  {{ super() }}
+{% endblock %}
+
+{% block main %}
+<div class="introduction">
+  <h1 class="introduction--h1"><em>{% if live.key %}{{live.key}}{% else %}{{latest.identifier}}{% endif %}</em> Schedule</h1>
+</div>
+<table>
+  <thead class="base--thead">
+    <tr class="base--tr">
+      <th class="base--th">{{config.content.base}}</th>
+      <th class="base--th">Sunrise</th>
+      <th class="base--th">Sunset</th>
+      <th class="base--th" colspan="3">Revision</th>
+    </tr>
+  </thead>
+  <tbody class="base--tbody">
+  {% for c in scheduled %}
+    <tr class="base--tr">
+      <td data-th="{{config.base}}" class="base--td">{{c.key}}</td>
+      <td data-th="sunrise" class="base--td">{{c.attributes['sunrise-date'].value}} {{c.attributes['sunrise-time'].value}} - America/New_York</td>
+      <td data-th="sunrise" class="base--td">{{c.attributes['sunset-date'].value}} {{c.attributes['sunset-time'].value}} - America/New_York</td>
+      <td data-th="revision" class="base--td"><a href="/{{config.content.base}}/{{c['type-slug']}}/{{c.id}}/{{c.revision}}" class="base--link">{{c.revision}}</a></td>
+    </tr>
+  {% endfor %}
+  </tbody>
+</table>
+{% endblock %}
+
+{% block footer %}
+{{ super() }}
+{% endblock %}
